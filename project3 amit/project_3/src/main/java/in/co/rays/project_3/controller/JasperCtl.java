@@ -39,7 +39,8 @@ public class JasperCtl extends BaseCtl {
 	protected void doGet(HttpServletRequest request , HttpServletResponse response) {
 		try {
 			/* Compilation of jrxml file */
-			JasperReport jasperReport = JasperCompileManager.compileReport("C:\\Users\\HP\\JaspersoftWorkspace\\MyReports\\markBlank_A4.jrxml");
+			InputStream inputStream = JasperCtl.class.getClassLoader().getResourceAsStream("jasper/markBlank_A4.jrxml")
+			JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
 			
 			HttpSession session = request.getSession();
 			UserDTO dto = (UserDTO) session.getAttribute("user");
