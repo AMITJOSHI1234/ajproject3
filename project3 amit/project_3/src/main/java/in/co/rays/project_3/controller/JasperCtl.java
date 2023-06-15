@@ -38,9 +38,9 @@ public class JasperCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request , HttpServletResponse response) {
 		try {
+			ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
 			/* Compilation of jrxml file */
-			InputStream inputStream = JasperCtl.class.getClassLoader().getResourceAsStream("jasper/markBlank_A4.jrxml")
-			JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
+			JasperReport jasperReport = JasperCompileManager.compileReport(rb.getString("report"));
 			
 			HttpSession session = request.getSession();
 			UserDTO dto = (UserDTO) session.getAttribute("user");
@@ -51,7 +51,6 @@ public class JasperCtl extends BaseCtl {
 			map.put("ID",1l );
 			Connection conn = null;
 			
-			ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
 			
 			String Database = rb.getString("DATABASE");
 			
